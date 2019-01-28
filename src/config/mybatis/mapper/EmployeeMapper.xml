@@ -26,32 +26,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateEmpById">
 		UPDATE employee SET lastname = #{lastname},email = #{email},gender = #{gender} WHERE id = #{id}
 	</update>
-
-
-
-
-
-
-
-
-	<!--<resultMap type="com.atguigu.ssm.beans.Employee" id="myEmpAndDept">
-		<id column="eid" property="id"/>
-		<result column="last_name" property="lastName"/>
-		<result column="email" property="email"/>
-		<result column="gender" property="gender"/>
-		<association property="dept" javaType="com.atguigu.ssm.beans.Department">
-			<id column="did" property="id"/>
-			<result column="dept_name"  property="departmentName"/>
-		</association>
-	</resultMap>-->
-	
-	<!-- 增删改 -->
-	
-	
-	
-	
-	
-	
-	
 	
 </mapper>
