@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yhhy.dao.EmployeeDao">
+	
+	<!-- public List<Employee> getAllEmp(); -->
+	<select id="getAllEmp" resultType="com.yhhy.bean.Employee">
+		SELECT id,lastname,email,gender FROM employee
+	</select>
+
+	<!--新增员工信息-->
+	<insert id="addEmpInfo">
+		INSERT INTO employee(lastname,email,gender)VALUES (#{lastname},#{email},#{gender})
+	</insert>
+	<!--删除员工信息-->
+	<delete id="delEmpById">
+		 DELETE FROM employee WHERE id = #{id}
+	</delete>
+	<!--获取某一条员工信息-->
+	<select id="getOneInfoById" resultType="com.yhhy.bean.Employee">
+		SELECT * FROM employee WHERE id = #{id}
+	</select>
+	<!--修改员工信息-->
+	<update id="updateEmpById">
+		UPDATE employee SET lastname = #{lastname},email = #{email},gender = #{gender} WHERE id = #{id}
+	</update>
+
+
+
+
+
+
+
+
+	<!--<resultMap type="com.atguigu.ssm.beans.Employee" id="myEmpAndDept">
+		<id column="eid" property="id"/>
+		<result column="last_name" property="lastName"/>
+		<result column="email" property="email"/>
+		<result column="gender" property="gender"/>
+		<association property="dept" javaType="com.atguigu.ssm.beans.Department">
+			<id column="did" property="id"/>
+			<result column="dept_name"  property="departmentName"/>
+		</association>
+	</resultMap>-->
+	
+	<!-- 增删改 -->
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>
