@@ -38,7 +38,7 @@
 		<!-- Mybatis的全局配置文件 -->
 		<property name="configLocation" value="classpath:config/mybatis-config.xml"></property>
 		<!-- Mybatis的SQL映射文件 -->
-		<property name="mapperLocations" value="classpath:config/mybatis/mapper/*.xml"></property>
+		<!--<property name="mapperLocations" value="classpath:config/mybatis/mapper/*.xml"></property>-->
 		
 		<!-- 别名处理 -->
 		<property name="typeAliasesPackage" value="com.yhhy.bean"></property>

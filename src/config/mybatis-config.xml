@@ -15,5 +15,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<setting name="aggressiveLazyLoading" value="false"/>
 	</settings>
 	
-	
+	<mappers>
+		<mapper resource="config/mybatis/mapper/EmployeeMapper.xml"/>
+	</mappers>
 </configuration>
