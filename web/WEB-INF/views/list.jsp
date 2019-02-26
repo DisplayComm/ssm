@@ -12,27 +12,27 @@
 	<h1 align="center">员工信息列表</h1>
 	<table align="center" border="1px" width="70%" cellspacing="0px">
 		<tr>
-			<th>ID</th>
-			<th>LastName</th>
-			<th>Email</th>
-			<th>Gender</th>
-			<%--<th>DeptName</th>--%>
-			<th>Operation</th>
+			<th>员工编号</th>
+			<th>员工姓名</th>
+			<th>员工邮箱</th>
+			<th>员工性别</th>
+			<th>所属部门</th>
+			<th>操作</th>
 		</tr>
 		<c:forEach items="${emps}" var="emp">
 			<tr align="center">
-				<td>${emp.id }</td>
-				<td>${emp.lastname }</td>
+				<td>${emp.emp_id }</td>
+				<td>${emp.emp_name }</td>
 				<td>${emp.email }</td>
-				<td>${emp.gender==0?'女':'男' }</td>
-				<%--<td>${emp.dept.departmentName }</td>--%>
+				<td>${emp.sex==0?'女':'男' }</td>
+				<td>${emp.department.department_name }</td>
 				<td>
-					<a href="${pageContext.request.contextPath}/goaddemp?id=${emp.id}">Edit</a>
-					<a href="${pageContext.request.contextPath}/delempbyid?id=${emp.id}">Delete</a>
+					<a href="${pageContext.request.contextPath}/goaddemp?id=${emp.emp_id}">编辑</a>
+					<a href="${pageContext.request.contextPath}/delempbyid?id=${emp.emp_id}">删除</a>
 				</td>
 			</tr>
 		</c:forEach>
 	</table>
-	<h2 align="center"> <a href="${pageContext.request.contextPath}/goaddemp">Add New Emp </a></h2>
+	<h2 align="center"> <a href="${pageContext.request.contextPath}/goaddemp">新增员工 </a></h2>
 </body>
 </html>
