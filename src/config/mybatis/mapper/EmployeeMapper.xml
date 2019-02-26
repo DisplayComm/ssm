@@ -6,25 +6,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.yhhy.dao.EmployeeDao">
 	
 	<!-- public List<Employee> getAllEmp(); -->
-	<select id="getAllEmp" resultType="com.yhhy.bean.Employee">
-		SELECT id,lastname,email,gender FROM employee
+
+	<resultMap id="WithDepartmentResultMap" type="com.yhhy.bean.Employee">
+		<id column="emp_id" jdbcType="INTEGER" property="emp_id" />
+		<result column="emp_name" jdbcType="VARCHAR" property="emp_name" />
+		<result column="sex" jdbcType="CHAR" property="sex" />
+		<result column="email" jdbcType="VARCHAR" property="email" />
+		<!-- 使用association指定查询部门字段的封装 -->
+		<association property="department" javaType="com.yhhy.bean.Department">
+			<id column="department_id" property="department_id" />
+			<result column="department_name" property="department_name" />
+			<result column="note" property="note"/>
+		</association>
+	</resultMap>
+
+	<select id="getAllEmp" resultMap="WithDepartmentResultMap">
+		SELECT a.emp_id,a.emp_name,a.sex,a.email,b.department_name,b.note FROM employee a LEFT JOIN department b ON a.department_id = b.department_id
 	</select>
 
 	<!--新增员工信息-->
 	<insert id="addEmpInfo">
-		INSERT INTO employee(lastname,email,gender)VALUES (#{lastname},#{email},#{gender})
+		INSERT INTO employee(emp_name,email,sex)VALUES (#{emp_name},#{email},#{sex})
 	</insert>
 	<!--删除员工信息-->
 	<delete id="delEmpById">
-		 DELETE FROM employee WHERE id = #{id}
+		 DELETE FROM employee WHERE emp_id = #{id}
 	</delete>
 	<!--获取某一条员工信息-->
 	<select id="getOneInfoById" resultType="com.yhhy.bean.Employee">
-		SELECT * FROM employee WHERE id = #{id}
+		SELECT * FROM employee WHERE emp_id = #{id}
 	</select>
 	<!--修改员工信息-->
 	<update id="updateEmpById">
-		UPDATE employee SET lastname = #{lastname},email = #{email},gender = #{gender} WHERE id = #{id}
+		UPDATE employee SET emp_name = #{emp_name},email = #{email},sex = #{sex} WHERE emp_id = #{emp_id}
 	</update>
 	
 </mapper>
