@@ -1,14 +1,10 @@
 package com.yhhy.controller;
 
-import com.sun.org.apache.bcel.internal.generic.IFEQ;
-import com.sun.org.apache.bcel.internal.generic.IfInstruction;
-import com.sun.org.apache.bcel.internal.generic.RETURN;
+
 import com.yhhy.bean.Employee;
 import com.yhhy.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,6 +22,7 @@ public class EmployeeController {
     public String getListEmp(Map<String,Object> map){
         List<Employee> list = employeeService.getListEmpInfo();
         map.put("emps",list);
+        System.out.println("返回的结果："+list);
         return "list";
     }
 
@@ -42,16 +39,18 @@ public class EmployeeController {
 
     @RequestMapping(value = "addemp",method = RequestMethod.POST)
     public String insertempinfo(HttpServletRequest request ,Employee employee){
-          String id = request.getParameter("id");
+          String emp_id = request.getParameter("id");
           String name = request.getParameter("name");
           String email = request.getParameter("email");
           String gender = request.getParameter("gender");
-          employee.setLastname(name);
+
+          employee.setEmp_name(name);
           employee.setEmail(email);
-          employee.setGender(Integer.parseInt(gender.toString()));
+          employee.setSex(Integer.parseInt(gender.toString()));
           int flag;
           String string = "";
-          if(id != null){
+          if(emp_id != null){
+              employee.setEmp_id(Integer.valueOf(emp_id));
              flag = employeeService.updateEmp(employee);
               string = "修改成功！";
           }else{
