@@ -1,6 +1,7 @@
 package com.yhhy.service;
 
 import com.yhhy.bean.Employee;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ public interface EmployeeService {
     int insertEmp(Employee employee);
     int dropEmpById(int id);
 
-    Employee getOneInfo(int id);
+    Employee getOneInfo(Integer emp_id);
     int updateEmp(Employee employee);
+
 }

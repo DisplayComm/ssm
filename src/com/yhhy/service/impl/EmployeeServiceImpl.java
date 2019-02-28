@@ -3,6 +3,7 @@ package com.yhhy.service.impl;
 import com.yhhy.bean.Employee;
 import com.yhhy.dao.EmployeeDao;
 import com.yhhy.service.EmployeeService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,12 +34,13 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public Employee getOneInfo(int id) {
-        return employeeDao.getOneInfoById(id);
+    public Employee getOneInfo(@Param("emp_id") Integer emp_id) {
+        return employeeDao.getOneInfoById(emp_id);
     }
 
     @Override
     public int updateEmp(Employee employee) {
         return employeeDao.updateEmpById(employee);
     }
+
 }
