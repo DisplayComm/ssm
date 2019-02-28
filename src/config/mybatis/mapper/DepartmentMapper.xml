@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yhhy.dao.DepartmentDao">
+
+    <!--新增部门-->
+    <insert id="addDeptInfo">
+        INSERT INTO department(department_id,department_name) VALUES (#{department_id},#{department_name})
+        <!--<selectKey keyProperty="department_id" order="AFTER" resultType="java.lang.String">
+			SELECT LAST_INSERT_ID()
+        </selectKey>-->
+    </insert>
+
+	<!--删除部门-->
+	<delete id="delDeptById">
+		DELETE FROM department WHERE department_id=#{deptId}
+	</delete>
+
+    <!--修改部门-->
+    <update id="updateDeptById">
+        UPDATE department SET department_id = #{department_id},department_name = #{department_name} WHERE department_id = #{department_id}
+    </update>
+</mapper>

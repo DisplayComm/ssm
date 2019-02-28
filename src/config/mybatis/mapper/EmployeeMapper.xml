@@ -12,6 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="emp_name" jdbcType="VARCHAR" property="emp_name" />
 		<result column="sex" jdbcType="CHAR" property="sex" />
 		<result column="email" jdbcType="VARCHAR" property="email" />
+		<result column="position" jdbcType="VARCHAR" property="position"/>
 		<!-- 使用association指定查询部门字段的封装 -->
 		<association property="department" javaType="com.yhhy.bean.Department">
 			<id column="department_id" property="department_id" />
@@ -21,24 +22,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 
 	<select id="getAllEmp" resultMap="WithDepartmentResultMap">
-		SELECT a.emp_id,a.emp_name,a.sex,a.email,b.department_id,b.department_name,b.note FROM employee a LEFT JOIN department b ON a.department_id = b.department_id
+		SELECT a.emp_id,a.emp_name,a.sex,a.email,a.position,b.department_id,b.department_name FROM employee a LEFT JOIN department b ON a.department_id = b.department_id
 	</select>
 
 	<!--新增员工信息-->
 	<insert id="addEmpInfo">
-		INSERT INTO employee(emp_name,email,sex)VALUES (#{emp_name},#{email},#{sex})
+		INSERT INTO employee(emp_name,email,sex,department_id) VALUES (#{emp_name},#{email},#{sex},#{department_id})
 	</insert>
 	<!--删除员工信息-->
 	<delete id="delEmpById">
 		 DELETE FROM employee WHERE emp_id = #{id}
 	</delete>
-	<!--获取某一条员工信息-->
-	<select id="getOneInfoById" resultType="com.yhhy.bean.Employee">
-		SELECT * FROM employee WHERE emp_id = #{id}
+	<resultMap id="ReturnOneResultMap" type="com.yhhy.bean.Employee">
+		<id column="emp_id" jdbcType="INTEGER" property="emp_id" />
+		<result column="emp_name" jdbcType="VARCHAR" property="emp_name" />
+		<result column="sex" jdbcType="CHAR" property="sex" />
+		<result column="email" jdbcType="VARCHAR" property="email" />
+		<result column="position" jdbcType="VARCHAR" property="position"/>
+		<association property="department" javaType="com.yhhy.bean.Department">
+			<id column="department_id" jdbcType="VARCHAR" property="department_id" />
+			<result column="department_name" jdbcType="VARCHAR" property="department_name" />
+		</association>
+	</resultMap>
+	<select id="getOneInfoById" resultMap="ReturnOneResultMap">
+		SELECT a.emp_id,a.emp_name,a.sex,a.email,a.position,b.department_id,b.department_name FROM employee a LEFT JOIN department b ON a.department_id = b.department_id
+		WHERE a.emp_id = #{emp_id}
 	</select>
 	<!--修改员工信息-->
 	<update id="updateEmpById">
 		UPDATE employee SET emp_name = #{emp_name},email = #{email},sex = #{sex} WHERE emp_id = #{emp_id}
 	</update>
-	
+
 </mapper>
