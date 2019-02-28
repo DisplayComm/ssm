@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yhhy.dao.ProductDao">
+    <select id="getListPro" resultType="com.yhhy.bean.Product">
+        SELECT product_Id,product_Name,product_Type,image FROM product
+    </select>
+</mapper>
