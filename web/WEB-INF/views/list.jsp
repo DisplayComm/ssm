@@ -14,8 +14,10 @@
 		<tr>
 			<th>员工编号</th>
 			<th>员工姓名</th>
-			<th>员工邮箱</th>
 			<th>员工性别</th>
+			<th>员工邮箱</th>
+			<th>员工职位</th>
+			<th>部门编号</th>
 			<th>所属部门</th>
 			<th>操作</th>
 		</tr>
@@ -23,12 +25,14 @@
 			<tr align="center">
 				<td>${emp.emp_id }</td>
 				<td>${emp.emp_name }</td>
-				<td>${emp.email }</td>
 				<td>${emp.sex==0?'女':'男' }</td>
+				<td>${emp.email }</td>
+				<td>${emp.position }</td>
+				<td>${emp.department.department_id }</td>
 				<td>${emp.department.department_name }</td>
 				<td>
-					<a href="${pageContext.request.contextPath}/goaddemp?id=${emp.emp_id}">编辑</a>
-					<a href="${pageContext.request.contextPath}/delempbyid?id=${emp.emp_id}">删除</a>
+					<a href="${pageContext.request.contextPath}/goaddemp?emp_id=${emp.emp_id}">编辑</a>
+					<a href="${pageContext.request.contextPath}/delempbyid?id=${emp.emp_id}&deptid=${emp.department.department_id}">删除</a>
 				</td>
 			</tr>
 		</c:forEach>
