@@ -17,6 +17,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 	<!--加载mapper文件-->
 	<mappers>
+		<!--员工mapper文件-->
 		<mapper resource="config/mybatis/mapper/EmployeeMapper.xml"/>
+		<!--部门mapper文件-->
+		<mapper resource="config/mybatis/mapper/DepartmentMapper.xml"/>
 	</mappers>
 </configuration>
