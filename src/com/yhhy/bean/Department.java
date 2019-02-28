@@ -6,7 +6,7 @@ package com.yhhy.bean;
 public class Department {
 
     /**
-     * 部门id
+     * 部门编号
      */
     private String department_id;
     /**
@@ -16,7 +16,7 @@ public class Department {
     /**
      * 部门描述
      */
-    private String note;
+    //private String note;
 
 
     public String getDepartment_id() {
@@ -35,11 +35,11 @@ public class Department {
         this.department_name = department_name;
     }
 
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
+//    public String getNote() {
+//        return note;
+//    }
+//
+//    public void setNote(String note) {
+//        this.note = note;
+//    }
 }

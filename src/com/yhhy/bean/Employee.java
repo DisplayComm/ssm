@@ -7,34 +7,47 @@ public class Employee {
     /**
      * 员工ID
      */
-    private int emp_id;
+    private Integer emp_id;
+
     /**
      * 员工姓名
      */
     private String emp_name;
+
     /**
      * 员工身份证号
      */
-    private String id_code;
+//    private String id_code;
+
     /**
      * 员工邮箱
      */
     private String email;
+
     /**
      * 员工性别
      */
     private int sex;
     /**
-     * 所属部门
+     * 职位
+     */
+    private String position;
+    /**
+     * 员工表部门id
+     */
+    private String department_id;
+
+    /**
+     * 部门信息
      */
     private Department department;
 
 
-    public int getEmp_id() {
+    public Integer getEmp_id() {
         return emp_id;
     }
 
-    public void setEmp_id(int emp_id) {
+    public void setEmp_id(Integer emp_id) {
         this.emp_id = emp_id;
     }
 
@@ -46,13 +59,13 @@ public class Employee {
         this.emp_name = emp_name;
     }
 
-    public String getId_code() {
-        return id_code;
-    }
-
-    public void setId_code(String id_code) {
-        this.id_code = id_code;
-    }
+//    public String getId_code() {
+//        return id_code;
+//    }
+//
+//    public void setId_code(String id_code) {
+//        this.id_code = id_code;
+//    }
 
     public int getSex() {
         return sex;
@@ -77,5 +90,21 @@ public class Employee {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public String getDepartment_id() {
+        return department_id;
+    }
+
+    public void setDepartment_id(String department_id) {
+        this.department_id = department_id;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 }
