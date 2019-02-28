@@ -1,14 +1,18 @@
 package com.yhhy.controller;
 
 
+import com.yhhy.bean.Department;
 import com.yhhy.bean.Employee;
+import com.yhhy.service.DepartmentService;
 import com.yhhy.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +21,9 @@ public class EmployeeController {
 
     @Autowired
     EmployeeService employeeService;
+
+    @Autowired
+    DepartmentService departmentService;
 
     @RequestMapping(value ="/emps",method = RequestMethod.GET)
     public String getListEmp(Map<String,Object> map){
@@ -28,14 +35,18 @@ public class EmployeeController {
 
     //跳转新增页面
     @RequestMapping(value = "goaddemp")
-    public String goaddjsp(HttpServletRequest request,Map<String,Object> map){
-        String id = request.getParameter("id");
-        if(id != null){
-            Employee employee = employeeService.getOneInfo(Integer.parseInt(id));
-            map.put("getone",employee);
+    public String goaddjsp(HttpServletRequest request, Map<String,Object> map){
+        String emp_id = request.getParameter("emp_id");
+        System.out.println(emp_id);
+        Employee employee = new Employee();
+        if(emp_id != null){
+            employee.setEmp_id(Integer.valueOf(emp_id));
+            Employee employeeList = employeeService.getOneInfo(employee.getEmp_id());
+            map.put("getone",employeeList);
         }
         return "addemp";
     }
+
 
     @RequestMapping(value = "addemp",method = RequestMethod.POST)
     public String insertempinfo(HttpServletRequest request ,Employee employee){
@@ -43,23 +54,36 @@ public class EmployeeController {
           String name = request.getParameter("name");
           String email = request.getParameter("email");
           String gender = request.getParameter("gender");
-
+          String position = request.getParameter("position");
           employee.setEmp_name(name);
           employee.setEmail(email);
           employee.setSex(Integer.parseInt(gender.toString()));
-          int flag;
+          employee.setPosition(position);
+
+          //部门
+          String department_id = request.getParameter("department_id");
+          String department_name = request.getParameter("department_name");
+          Department department = new Department();
+          department.setDepartment_id(department_id);
+          department.setDepartment_name(department_name);
+          employee.setDepartment(department);
+          employee.setDepartment_id(department.getDepartment_id());
+
+          int flag,depart = 0,updateFlag = 0;
           String string = "";
           if(emp_id != null){
               employee.setEmp_id(Integer.valueOf(emp_id));
-             flag = employeeService.updateEmp(employee);
+              updateFlag = departmentService.updateDept(department);
+              flag = employeeService.updateEmp(employee);
               string = "修改成功！";
           }else{
+              depart = departmentService.insertDept(department);
               flag = employeeService.insertEmp(employee);
               string = "添加成功！";
           }
-          if (flag > 0){
+          if (flag > 0 && depart >0){
               System.out.println(string);
-          }else{
+          }else if (flag > 0 && updateFlag >0){
               System.out.println(string);
           }
           return "redirect:/emps";
@@ -69,8 +93,10 @@ public class EmployeeController {
     @RequestMapping(value = "/delempbyid")
     public String deleteempbyid(HttpServletRequest request){
         String id = request.getParameter("id");
+        String deptId = request.getParameter("deptid");
         int flag = employeeService.dropEmpById(Integer.parseInt(id));
-        if (flag > 0){
+        int delflag = departmentService.dropDeptById(Integer.parseInt(deptId));
+        if (flag > 0 && delflag >0){
             System.out.println("删除成功！"+flag);
         }else{
             System.out.println("删除失败："+flag);
