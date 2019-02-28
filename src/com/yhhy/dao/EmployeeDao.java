@@ -1,6 +1,7 @@
 package com.yhhy.dao;
 
 import com.yhhy.bean.Employee;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -26,10 +27,12 @@ public interface EmployeeDao {
     /**
      * 修改数据回显
      */
-    Employee getOneInfoById(int id);
+    Employee getOneInfoById(Integer emp_id);
 
     /**
      * 修改某一条数据
      */
     int updateEmpById(Employee employee);
+
+
 }
