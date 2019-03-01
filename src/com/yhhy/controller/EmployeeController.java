@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -24,9 +25,11 @@ public class EmployeeController {
     DepartmentService departmentService;
 
     @RequestMapping(value ="/emps",method = RequestMethod.GET)
-    public String getListEmp(Map<String,Object> map){
-        List<Employee> list = employeeService.getListEmpInfo();
+    public String getListEmp(Map<String,Object> map, @RequestParam("current") int current,@RequestParam("rowCount") int rowCount){
+        List<Employee> list = employeeService.getListEmpInfo(current,rowCount);
         map.put("emps",list);
+        map.put("current",current);
+        map.put("rowCount",rowCount);
         System.out.println("返回的结果："+list);
         return "list";
     }

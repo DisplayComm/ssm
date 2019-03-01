@@ -12,7 +12,7 @@ public interface EmployeeDao {
     /**
      * 查询所有员工信息
      */
-    List<Employee> getAllEmp();
+    List<Employee> getAllEmp(@Param("current") int current,@Param("rowCount") int rowCount);
 
     /**
      * 新增员工信息

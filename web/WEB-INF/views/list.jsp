@@ -37,6 +37,13 @@
 			</tr>
 		</c:forEach>
 	</table>
+
+	<div style="text-align: center;margin-top: 10px;padding: 20px;">
+		<a href="${pageContext.request.contextPath}/emps?current=0&rowCount=10">首页</a>
+		<a href="#">上一页</a>
+		<a href="#">下一页</a>
+		<a href="#">尾页</a>
+	</div>
 	<h2 align="center"> <a href="${pageContext.request.contextPath}/goaddemp">新增员工 </a></h2>
 </body>
 </html>

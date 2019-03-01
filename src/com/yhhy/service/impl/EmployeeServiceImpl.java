@@ -19,8 +19,8 @@ public class EmployeeServiceImpl implements EmployeeService{
     EmployeeDao employeeDao;
 
     @Override
-    public List<Employee> getListEmpInfo() {
-        return employeeDao.getAllEmp();
+    public List<Employee> getListEmpInfo(int current,int rowCount) {
+        return employeeDao.getAllEmp(current,rowCount);
     }
 
     @Override

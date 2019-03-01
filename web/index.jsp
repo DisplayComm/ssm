@@ -12,6 +12,6 @@
   </head>
   <body>
    <h1 style="color: red">SSM框架增删改查demo</h1>
-   <a href="${pageContext.request.contextPath}/emps">查看员工列表</a>
+   <a href="${pageContext.request.contextPath}/emps?current=0&rowCount=10">查看员工列表</a>
   </body>
 </html>
