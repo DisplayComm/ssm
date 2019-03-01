@@ -27,7 +27,7 @@
 				<td>${emp.emp_name }</td>
 				<td>${emp.sex==0?'女':'男' }</td>
 				<td>${emp.email }</td>
-				<td>${emp.position }</td>
+				<td>${emp.positions }</td>
 				<td>${emp.department.department_id }</td>
 				<td>${emp.department.department_name }</td>
 				<td>

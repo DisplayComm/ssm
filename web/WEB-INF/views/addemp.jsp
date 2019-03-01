@@ -33,7 +33,7 @@
     <br>
     Email:<input type="text" name="email" value="${getone.email}">
     <br>
-    员工职位:<input type="text" name="position" value="${getone.position}">
+    员工职位:<input type="text" name="positions" value="${getone.positions}">
     <br>
     部门编号:<input type="text" name="department_id" value="${getone.department.department_id}">
 

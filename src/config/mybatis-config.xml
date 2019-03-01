@@ -4,7 +4,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!-- 配置 -->
 <configuration>
-	
+
+	<!--引入外部properties配置文件-->
+	<properties resource="config/db.properties"/>
+
 	<!-- 2. settings:  包含了很多重要的设置项 -->
 	<settings>
 		<!-- 映射下划线到驼峰命名 -->
@@ -19,14 +22,14 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<environment id="development">
 			<transactionManager type="jdbc"/>
 			<dataSource type="POOLED">
-				<property name="driver" value="com.mysql.jdbc.Driver"/>
-				<property name="url" value="jdbc:mysql://192.168.1.32:3306/testweb?allowMultiQueries=true"/>
-				<property name="username" value="root"/>
-				<property name="password" value="yhhy2018"/>
+				<property name="driver" value="${jdbc.driver}"/>
+				<property name="url" value="${jdbc.url}"/>
+				<property name="username" value="${jdbc.username}"/>
+				<property name="password" value="${jdbc.password}"/>
 			</dataSource>
 		</environment>
 	</environments>
-
+	
 	<!--加载mapper文件-->
 	<mappers>
 		<!--员工mapper文件-->

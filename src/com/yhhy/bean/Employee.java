@@ -31,7 +31,7 @@ public class Employee {
     /**
      * 职位
      */
-    private String position;
+    private String positions;
     /**
      * 员工表部门id
      */
@@ -100,11 +100,11 @@ public class Employee {
         this.department_id = department_id;
     }
 
-    public String getPosition() {
-        return position;
+    public String getPositions() {
+        return positions;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setPositions(String positions) {
+        this.positions = positions;
     }
 }

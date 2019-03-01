@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -54,11 +52,11 @@ public class EmployeeController {
           String name = request.getParameter("name");
           String email = request.getParameter("email");
           String gender = request.getParameter("gender");
-          String position = request.getParameter("position");
+          String positions = request.getParameter("positions");
           employee.setEmp_name(name);
           employee.setEmail(email);
           employee.setSex(Integer.parseInt(gender.toString()));
-          employee.setPosition(position);
+          employee.setPositions(positions);
 
           //部门
           String department_id = request.getParameter("department_id");
