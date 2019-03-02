@@ -106,7 +106,7 @@ public class EmployeeController {
         }else{
             System.out.println("删除失败："+flag);
         }
-        return "redirect:/emps";
+        return "redirect:/emps?current=0&rowCount=10";
     }
 
 }
