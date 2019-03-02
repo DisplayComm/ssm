@@ -23,7 +23,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="getAllEmp" resultMap="WithDepartmentResultMap">
 		SELECT a.emp_id,a.emp_name,a.sex,a.email,a.positions,b.department_id,b.department_name FROM employee a LEFT JOIN department b ON a.department_id = b.department_id
+		/*ORDER BY a.emp_id DESC */
 		LIMIT #{current},#{rowCount}
+	</select>
+	<!--查询员工记录数-->
+	<select id="getTotalCount" resultType="java.lang.Integer">
+		SELECT count(*) FROM employee a LEFT JOIN department b ON a.department_id = b.department_id
 	</select>
 
 	<!--新增员工信息-->

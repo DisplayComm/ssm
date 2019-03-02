@@ -39,10 +39,30 @@
 	</table>
 
 	<div style="text-align: center;margin-top: 10px;padding: 20px;">
-		<a href="${pageContext.request.contextPath}/emps?current=0&rowCount=10">首页</a>
-		<a href="#">上一页</a>
-		<a href="#">下一页</a>
-		<a href="#">尾页</a>
+		<c:choose>
+			<c:when test="${current == 0}">
+				<%--<a href="${pageContext.request.contextPath}/emps?current=0&rowCount=10">上一页</a>--%>
+				<label>首页</label>
+				<label>上一页</label>
+			</c:when>
+			<c:otherwise>
+				<a href="${pageContext.request.contextPath}/emps?current=0&rowCount=10">首页</a>
+
+				<a href="${pageContext.request.contextPath}/emps?current=${current-10}&rowCount=10">上一页</a>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${(djy+1) == (total+1) } ">
+				<label>下一页</label>
+				<label>尾页</label>
+			</c:when>
+			<c:otherwise>
+				<a href="${pageContext.request.contextPath}/emps?current=${current+10}&rowCount=10">下一页</a>
+				<a href="${pageContext.request.contextPath}/emps?current=${total*10}&rowCount=10">尾页</a>
+			</c:otherwise>
+		</c:choose>
+
+		<label>这是第${djy+1}页,共${total+1}页</label>
 	</div>
 	<h2 align="center"> <a href="${pageContext.request.contextPath}/goaddemp">新增员工 </a></h2>
 </body>

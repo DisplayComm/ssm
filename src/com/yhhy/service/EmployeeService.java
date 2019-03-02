@@ -10,6 +10,8 @@ import java.util.List;
  */
 public interface EmployeeService {
     List<Employee> getListEmpInfo(@Param("current") int current,@Param("rowCount") int rowCount);
+    int getTotalNum();
+
     int insertEmp(Employee employee);
     int dropEmpById(int id);
 

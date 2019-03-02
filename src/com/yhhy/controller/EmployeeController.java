@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -27,10 +28,13 @@ public class EmployeeController {
     @RequestMapping(value ="/emps",method = RequestMethod.GET)
     public String getListEmp(Map<String,Object> map, @RequestParam("current") int current,@RequestParam("rowCount") int rowCount){
         List<Employee> list = employeeService.getListEmpInfo(current,rowCount);
+        int totalNum = employeeService.getTotalNum();
         map.put("emps",list);
         map.put("current",current);
         map.put("rowCount",rowCount);
-        System.out.println("返回的结果："+list);
+        map.put("total",Math.abs(totalNum/10));
+        map.put("djy",Math.abs(current/10));
+        System.out.println("返回的结果："+Math.abs(24/10));
         return "list";
     }
 
@@ -87,7 +91,7 @@ public class EmployeeController {
           }else if (flag > 0 && updateFlag >0){
               System.out.println(string);
           }
-          return "redirect:/emps";
+          return "redirect:/emps?current=0&rowCount=10";
     }
 
     //删除员工信息

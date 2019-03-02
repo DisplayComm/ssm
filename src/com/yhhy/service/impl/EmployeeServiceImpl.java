@@ -24,6 +24,11 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
+    public int getTotalNum() {
+        return employeeDao.getTotalCount();
+    }
+
+    @Override
     public int insertEmp(Employee employee) {
         return employeeDao.addEmpInfo(employee);
     }

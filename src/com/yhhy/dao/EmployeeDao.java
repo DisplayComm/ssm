@@ -14,6 +14,8 @@ public interface EmployeeDao {
      */
     List<Employee> getAllEmp(@Param("current") int current,@Param("rowCount") int rowCount);
 
+    int getTotalCount();
+
     /**
      * 新增员工信息
      */
