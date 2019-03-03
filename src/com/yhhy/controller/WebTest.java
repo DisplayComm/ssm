@@ -1,5 +1,7 @@
 package com.yhhy.controller;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.yhhy.bean.Product;
 import com.yhhy.dao.ProductDao;
 import com.yhhy.util.MyBatisUtil;
@@ -23,12 +25,12 @@ public class WebTest {
 
             try{
                 ProductDao productDao = sqlSession.getMapper(ProductDao.class);
+                PageHelper.offsetPage(1,2);
                 List<Product> product = productDao.getListPro();
-                sqlSession.commit();
-                System.out.println(product);
+                for (Product product1:product)
+                System.out.println("分页查询："+product1);
             }finally {
                 sqlSession.close();
             }
-
         }
     }
