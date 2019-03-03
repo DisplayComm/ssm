@@ -26,15 +26,15 @@ public class EmployeeController {
     DepartmentService departmentService;
 
     @RequestMapping(value ="/emps",method = RequestMethod.GET)
-    public String getListEmp(Map<String,Object> map, @RequestParam("current") int current,@RequestParam("rowCount") int rowCount){
-        List<Employee> list = employeeService.getListEmpInfo(current,rowCount);
+    public String getListEmp(HttpServletRequest request,Map<String,Object> map, @RequestParam(value = "current",required = false) int current,
+                             @RequestParam(value = "rowCount",required = false) int rowCount,@RequestParam(value = "emp_name",required = false) String emp_name){
+        List<Employee> list = employeeService.getListEmpInfo(current,rowCount,emp_name);
         int totalNum = employeeService.getTotalNum();
         map.put("emps",list);
         map.put("current",current);
         map.put("rowCount",rowCount);
         map.put("total",Math.abs(totalNum/10));
         map.put("djy",Math.abs(current/10));
-        System.out.println("返回的结果："+Math.abs(24/10));
         return "list";
     }
 

@@ -10,6 +10,15 @@
 </head>
 <body>
 	<h1 align="center">员工信息列表</h1>
+	<div style="text-align: center;margin-bottom: 10px;">
+		<form method="get" action="${pageContext.request.contextPath}/emps">
+			<input type="hidden" name="current" value="0"/>
+			<input type="hidden" name="rowCount" value="10"/>
+			姓名：<input type="text" name="emp_name"/>
+			所属部门：<input type="text" name="depart_name"/>
+			<input type="submit" value="提交"/>
+		</form>
+	</div>
 	<table align="center" border="1px" width="70%" cellspacing="0px">
 		<tr>
 			<th>员工编号</th>
@@ -41,18 +50,16 @@
 	<div style="text-align: center;margin-top: 10px;padding: 20px;">
 		<c:choose>
 			<c:when test="${current == 0}">
-				<%--<a href="${pageContext.request.contextPath}/emps?current=0&rowCount=10">上一页</a>--%>
 				<label>首页</label>
 				<label>上一页</label>
 			</c:when>
 			<c:otherwise>
 				<a href="${pageContext.request.contextPath}/emps?current=0&rowCount=10">首页</a>
-
 				<a href="${pageContext.request.contextPath}/emps?current=${current-10}&rowCount=10">上一页</a>
 			</c:otherwise>
 		</c:choose>
 		<c:choose>
-			<c:when test="${(djy+1) == (total+1) } ">
+			<c:when test="${djy == total}">
 				<label>下一页</label>
 				<label>尾页</label>
 			</c:when>

@@ -24,6 +24,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getAllEmp" resultMap="WithDepartmentResultMap">
 		SELECT a.emp_id,a.emp_name,a.sex,a.email,a.positions,b.department_id,b.department_name FROM employee a LEFT JOIN department b ON a.department_id = b.department_id
 		/*ORDER BY a.emp_id DESC */
+		WHERE 1=1
+		<if test="emp_name != null">
+			AND a.emp_name = #{emp_name}
+		</if>
+		<!--<if test="#{b.department_name != null}">
+			AND b.department_name LIKE CONCAT('%',#{depart_name},'%')
+		</if>-->
 		LIMIT #{current},#{rowCount}
 	</select>
 	<!--查询员工记录数-->

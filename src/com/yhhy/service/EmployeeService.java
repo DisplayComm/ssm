@@ -9,7 +9,8 @@ import java.util.List;
  * 获取员工信息业务处理层
  */
 public interface EmployeeService {
-    List<Employee> getListEmpInfo(@Param("current") int current,@Param("rowCount") int rowCount);
+    List<Employee> getListEmpInfo(@Param("current") int current,@Param("rowCount") int rowCount,
+                                  @Param("emp_name") String emp_name);
     int getTotalNum();
 
     int insertEmp(Employee employee);

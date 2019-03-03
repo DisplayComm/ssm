@@ -12,7 +12,8 @@ public interface EmployeeDao {
     /**
      * 查询所有员工信息
      */
-    List<Employee> getAllEmp(@Param("current") int current,@Param("rowCount") int rowCount);
+    List<Employee> getAllEmp(@Param("current") int current,@Param("rowCount") int rowCount,
+                             @Param("emp_name") String emp_name);
 
     int getTotalCount();
 
