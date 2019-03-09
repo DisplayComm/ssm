@@ -64,13 +64,35 @@
 	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
 		<property name="cacheManagerConfigFile" value="classpath:config/ehcache.xml"/>
 	</bean>
-	<!--配置Realm接口-->
-	<bean id="jdbcRealm" class="com.yhhy.realm.ShiroRealm"></bean>
+	<!--配置Realm接口 -->
+	<bean id="jdbcRealm" class="com.yhhy.realm.ShiroRealm">
+		<property name="credentialsMatcher">
+			<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+				<property name="hashAlgorithmName" value="MD5"/>
+				<property name="hashIterations" value="1024"/>
+			</bean>
+		</property>
+	</bean>
 	<!--配置LifecycleBeanPostProcessor可以自动的来调用配置在Spring IOC容器中bean的生命周期方法-->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
 		<property name="loginUrl" value="index.jsp"/>
 		<property name="successUrl" value="list.jsp"/>
+		<property name="unauthorizedUrl" value="unauthorized.jsp"/>
+		<property name="filterChainDefinitions">
+   			<value>
+				/index.jsp = anon
+				/shiro/login = anon
+				/shiro/logout = logout
+				<!--权限控制-->
+				/addemp.jsp = roles[admin]
+				/goaddemp = roles[admin]
+				/delempbyid = roles[admin]
+				<!--list.jsp = roles[lisi]-->
+				<!--其他需要登录认证之后才可以访问-->
+				/** = authc
+			</value>
+		</property>
 	</bean>
 </beans>

@@ -44,5 +44,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 		<!--产品mapper-->
 		<mapper resource="config/mybatis/mapper/ProductMapper.xml"/>
+		<!--用户信息Mapper-->
+		<mapper resource="config/mybatis/mapper/UserMapper.xml"/>
 	</mappers>
 </configuration>

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!-- 导入JSTL标签 -->
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,6 +11,10 @@
 </head>
 <body>
 	<h1 align="center">员工信息列表</h1>
+	<div style="float: right;margin-right: 200px;">
+		欢迎:<shiro:principal></shiro:principal><a href="shiro/logout">登出</a>
+	</div>
+
 	<div style="text-align: center;margin-bottom: 10px;">
 		<form method="get" action="${pageContext.request.contextPath}/emps">
 			<input type="hidden" name="current" value="0"/>
@@ -39,10 +44,12 @@
 				<td>${emp.positions }</td>
 				<td>${emp.department.department_id }</td>
 				<td>${emp.department.department_name }</td>
-				<td>
-					<a href="${pageContext.request.contextPath}/goaddemp?emp_id=${emp.emp_id}">编辑</a>
-					<a href="${pageContext.request.contextPath}/delempbyid?id=${emp.emp_id}&deptid=${emp.department.department_id}">删除</a>
-				</td>
+				<shiro:hasRole name="admin">
+					<td>
+					  <a href="${pageContext.request.contextPath}/goaddemp?emp_id=${emp.emp_id}">编辑</a>
+					  <a href="${pageContext.request.contextPath}/delempbyid?id=${emp.emp_id}&deptid=${emp.department.department_id}">删除</a>
+					</td>
+				</shiro:hasRole>
 			</tr>
 		</c:forEach>
 	</table>
@@ -72,5 +79,6 @@
 		<label>这是第${djy+1}页,共${total+1}页</label>
 	</div>
 	<h2 align="center"> <a href="${pageContext.request.contextPath}/goaddemp">新增员工 </a></h2>
+
 </body>
 </html>

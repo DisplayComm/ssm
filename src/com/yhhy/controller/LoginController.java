@@ -8,13 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.security.auth.Subject;
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/shiro")
 public class LoginController {
 
     @RequestMapping("/login")
-    public String login(@RequestParam("username") String username,@RequestParam("password") String password){
+    public String login(HttpServletRequest request,Map<String, Object> map, @RequestParam("username") String username,
+                        @RequestParam("password") String password) throws UnsupportedEncodingException {
         org.apache.shiro.subject.Subject subject = SecurityUtils.getSubject();
         if(!subject.isAuthenticated()){
             // 把用户名和密码封装为 UsernamePasswordToken 对象
@@ -23,7 +27,9 @@ public class LoginController {
             try {
                 subject.login(token);
             }catch (AuthenticationException ae){
-                System.out.println("AuthenticationException"+ae.getMessage());
+                System.out.println("登录失败："+ae.getMessage());
+                map.put("loginError",ae.getMessage());
+                return "redirect:/index.jsp";
             }
         }
         return "redirect:/emps?current=0&rowCount=10";
