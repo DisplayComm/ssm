@@ -1,5 +1,6 @@
 package com.yhhy.controller;
 
+import com.yhhy.util.GraphicsUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -7,7 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.RenderedImage;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
@@ -32,6 +37,28 @@ public class LoginController {
             }
         }
         return "redirect:/emps?current=0&rowCount=10";
+    }
+
+    /**
+     * 获取图片验证码
+     * @param request
+     * @param response
+     */
+    @RequestMapping("/getValidateCode")
+    public void getValidateCodeInfo(HttpServletRequest request,HttpServletResponse response){
+        try {
+            response.setHeader("Pragma","No-cache");
+            response.setHeader("Cache-Control","no-cache");
+            response.setDateHeader("Expires", 0);
+            //表明生成的响应是图片
+            response.setContentType("image/jpeg");
+            Map<String, Object> map1=new GraphicsUtil().getGraphics();
+            System.out.println(map1.get("rand"));
+            request.getSession().setAttribute("rand", map1.get("rand"));
+            ImageIO.write((RenderedImage) map1.get("image"), "JPEG", response.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

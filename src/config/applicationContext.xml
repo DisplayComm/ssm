@@ -85,7 +85,7 @@
 				/login.jsp = anon
 				/shiro/login = anon
 				/shiro/logout = logout
-
+				/shiro/getValidateCode = anon
 				/css/style.css = anon
 				<!--权限控制-->
 				/addemp.jsp = roles[admin]

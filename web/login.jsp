@@ -17,13 +17,19 @@
           <label>密码:</label>
           <input type="password" name="password" required />
 
-          <label style="color: red"><%=loginError==null?"":loginError%><a href="#">忘记密码?</a></label>
-          <span></span>
+          <%--<label><a href="#">忘记密码?</a></label>--%>
+          <label>
+              <img src="${pageContext.request.contextPath}/shiro/getValidateCode"/>
+              <a href="${pageContext.request.contextPath}/login.jsp">看不清，换一下</a>
+              <input style="width: 50px;" type="text" name="ValidateCode" required />
+          </label>
 
+          <br><br>
           <input type="checkbox" name="save" id="save"/>
           <label for="save">保持登录</label>
-
           <input type="submit" value="登录" />
+
+          <%--<label style="color: red"><%=loginError==null?"":loginError%></label>--%>
       </form>
   </div>
   </body>
