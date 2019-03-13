@@ -20,7 +20,7 @@
           <label style="color: red"><%=loginError==null?"":loginError%></label>
           <span></span>
 
-          <input type="checkbox" name="save" id="save" />
+          <input type="checkbox" name="save" id="save"/>
           <label for="save">保持登录</label>
 
           <input type="submit" value="登录" />
