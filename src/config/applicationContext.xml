@@ -77,12 +77,12 @@
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
-		<property name="loginUrl" value="index.jsp"/>
+		<property name="loginUrl" value="login.jsp"/>
 		<property name="successUrl" value="list.jsp"/>
 		<property name="unauthorizedUrl" value="unauthorized.jsp"/>
 		<property name="filterChainDefinitions">
    			<value>
-				/index.jsp = anon
+				/login.jsp = anon
 				/shiro/login = anon
 				/shiro/logout = logout
 

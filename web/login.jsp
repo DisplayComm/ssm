@@ -14,10 +14,10 @@
           <label>用户名:</label>
           <input type="text" name="username" required />
 
-          <label>密码:<a href="#">忘记密码?</a></label>
+          <label>密码:</label>
           <input type="password" name="password" required />
 
-          <label style="color: red"><%=loginError==null?"":loginError%></label>
+          <label style="color: red"><%=loginError==null?"":loginError%><a href="#">忘记密码?</a></label>
           <span></span>
 
           <input type="checkbox" name="save" id="save"/>
