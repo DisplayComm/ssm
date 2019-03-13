@@ -85,6 +85,8 @@
 				/index.jsp = anon
 				/shiro/login = anon
 				/shiro/logout = logout
+
+				/css/style.css = anon
 				<!--权限控制-->
 				/addemp.jsp = roles[admin]
 				/goaddemp = roles[admin]
